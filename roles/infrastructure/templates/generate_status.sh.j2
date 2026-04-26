@@ -1,0 +1,11 @@
+#!/bin/bash
+# 自动生成的静态状态看板
+echo "<!DOCTYPE html><html><head><meta name='robots' content='noindex, nofollow'><title>Node Status</title></head><body>"
+echo "<h2>System Status: {{ inventory_hostname }}</h2>"
+echo "<pre>"
+echo "Time: $(date)"
+echo "Uptime: $(uptime -p)"
+echo "Memory: $(free -m | awk '/Mem:/ {print $3"MB / "$2"MB"}')"
+echo "Swap: $(free -m | awk '/Swap:/ {print $3"MB / "$2"MB"}')"
+echo "Disk: $(df -h / | awk 'NR==2 {print $3" / "$2" ("$5")"}')"
+echo "</pre></body></html>"
